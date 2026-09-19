@@ -40,14 +40,8 @@ pipeline {
             }
         }
 
-        stage('OWASP Dependency Check') {
-            steps {
-                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
-                    dependencyCheck additionalArguments: "--nvdApiKey=$NVD_API_KEY",
-                                    odcInstallation: 'DC'
-                }
-            }
-        }
+        // OWASP Dependency Check stage removed (no NVD API key).
+        // Add it back later once you have the key and the 'nvd-api-key' credential.
 
         stage('Build') {
             steps {
@@ -57,7 +51,7 @@ pipeline {
 
         stage('deploy to Nexus') {
             steps {
-                withMaven(globalMavenSettingsConfig: 'global-maven', jdk: 'jdk-17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
+                withMaven(globalMavenSettingsConfig: 'global-maven', jdk: 'jdk-17', maven: 'maven-3', mavenSettingsConfig: '', traceability: true) {
                     sh "mvn deploy -DskipTests=true"
                 }
             }
