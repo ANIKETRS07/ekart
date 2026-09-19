@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ekart
-          image: YOUR-DOCKERHUB-USER/ekart:latest
+          image: aniketdocker8668/ekart:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8070

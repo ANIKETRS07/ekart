@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -14,7 +13,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/YOUR-GITHUB-USER/Ekart.git'
+                git branch: 'main', url: 'https://github.com/ANIKETRS07/ekart.git'
             }
         }
 
@@ -34,8 +33,8 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar-scanner') {
                     sh "${env.SCANNER_HOME}/bin/sonar-scanner \
-                        -Dsonar.projectKey=MY-EKART \
-                        -Dsonar.projectName=MY-EKART \
+                        -Dsonar.projectKey=EKART-ANIKET \
+                        -Dsonar.projectName=EKART-ANIKET \
                         -Dsonar.java.binaries=target/classes"
                 }
             }
@@ -67,7 +66,7 @@ pipeline {
         stage('build and Tag docker image') {
             steps {
                 script {
-                    sh "docker build -t YOUR-DOCKERHUB-USER/ekart:latest -f docker/Dockerfile ."
+                    sh "docker build -t aniketdocker8668/ekart:latest -f docker/Dockerfile ."
                 }
             }
         }
@@ -76,9 +75,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                        sh 'echo $dockerhubpwd | docker login -u YOUR-DOCKERHUB-USER --password-stdin'
+                        sh 'echo $dockerhubpwd | docker login -u aniketdocker8668 --password-stdin'
                     }
-                    sh 'docker push YOUR-DOCKERHUB-USER/ekart:latest'
+                    sh 'docker push aniketdocker8668/ekart:latest'
                 }
             }
         }
@@ -86,7 +85,7 @@ pipeline {
         stage('EKS and Kubectl configuration') {
             steps {
                 script {
-                    sh 'aws eks update-kubeconfig --region YOUR-REGION --name YOUR-CLUSTER-NAME'
+                    sh 'aws eks update-kubeconfig --region ap-south-1 --name main'
                 }
             }
         }
@@ -100,3 +99,5 @@ pipeline {
         }
     }
 }
+                                    
+

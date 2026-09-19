@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.yourname</groupId>
+    <groupId>com.aniketrs07</groupId>
     <artifactId>shopping-cart</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>my-ekart</name>
-    <description>My Spring Boot shopping cart project with CI/CD pipeline</description>
+    <name>ekart-aniket</name>
+    <description>Spring Boot shopping cart project with CI/CD pipeline</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -145,12 +145,12 @@
         <repository>
             <id>maven-releases</id>
             <name>maven-releases</name>
-            <url>http://YOUR-NEXUS-IP:8081/repository/maven-releases/</url>
+            <url>http://35.154.53.139:8081/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>maven-snapshots</id>
             <name>maven-snapshots</name>
-            <url>http://YOUR-NEXUS-IP:8081/repository/maven-snapshots/</url>
+            <url>http://35.154.53.139:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
